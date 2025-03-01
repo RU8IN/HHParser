@@ -6,9 +6,10 @@ plugins {
     alias(libs.plugins.composeCompiler)
 }
 
+
 kotlin {
     jvm("desktop")
-    
+
     sourceSets {
         val desktopMain by getting
         
@@ -21,6 +22,13 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.cio)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.auth)
+            implementation(libs.ktor.content.negotioation)
+            implementation(libs.ktor.serializaton)
+            implementation(libs.logback.classic)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -35,7 +43,7 @@ compose.desktop {
         mainClass = "io.github.ru8in.hhparser.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Dmg, TargetFormat.Exe, TargetFormat.Deb)
             packageName = "io.github.ru8in.hhparser"
             packageVersion = "1.0.0"
         }
