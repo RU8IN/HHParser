@@ -26,6 +26,7 @@ kotlin {
             implementation(libs.ktor.client.cio)
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.auth)
+            implementation(libs.ktor.client.encoding)
             implementation(libs.ktor.content.negotioation)
             implementation(libs.ktor.serializaton)
             implementation(libs.logback.classic)
