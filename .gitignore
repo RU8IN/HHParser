@@ -8,6 +8,8 @@ xcuserdata
 config.ini
 .idea
 **/logs/
+**/saved_requests/
+*.json
 .DS_Store
 captures
 .externalNativeBuild
