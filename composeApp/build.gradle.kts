@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 
@@ -30,6 +31,7 @@ kotlin {
             implementation(libs.ktor.content.negotioation)
             implementation(libs.ktor.serializaton)
             implementation(libs.logback.classic)
+            implementation(libs.logback.core)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

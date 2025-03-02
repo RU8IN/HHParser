@@ -1,16 +1,10 @@
 package io.github.ru8in.hhparser
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,10 +12,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.github.ru8in.hhparser.api.HeadHunterAPIClient
-import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
+import org.slf4j.LoggerFactory
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -30,6 +22,8 @@ import java.time.format.DateTimeFormatter
 @Composable
 @Preview
 fun App() {
+    val logger = LoggerFactory.getLogger("App")
+
     MaterialTheme {
         var showCountries by remember { mutableStateOf(false) }
         var timeAtLocation by remember { mutableStateOf("No Location Selected") }
@@ -71,9 +65,6 @@ fun App() {
 
 @Composable
 fun HelloContent() {
-
-    val client = HeadHunterAPIClient()
-
     Column(modifier = Modifier.padding(16.dp)) {
         var name by remember { mutableStateOf("") }
         if (name.isNotEmpty()) {
@@ -88,23 +79,6 @@ fun HelloContent() {
             onValueChange = { name = it },
             label = { Text("Name") }
         )
-    }
-    Column(modifier = Modifier.padding(16.dp)) {
-        var resp by remember { mutableStateOf("") }
-        val scope =  rememberCoroutineScope()
-
-        if (resp.isNotEmpty()) {
-            Text(
-                text = resp,
-                modifier = Modifier.padding(bottom = 8.dp),
-                style = MaterialTheme.typography.body1
-            )
-        }
-        Button(
-            onClick = { scope.launch { resp = client.make() }}
-        ) {
-            Text("Make Request")
-        }
     }
 }
 
